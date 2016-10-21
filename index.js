@@ -2,7 +2,7 @@ const bignum = require('bignum');
 
 var primeCache = [];
 // Can be a numerical literal or a string containing it
-var max = bignum(100000);
+var max = bignum(10000000);
 
 function isPrime(n) {
   var prob = n.probPrime();
@@ -14,9 +14,15 @@ function isPrime(n) {
   }
 }
 
+var counter = 0;
 for (let i = bignum(3); i.lt(max); i = i.add(2)) {
   if (isPrime(i)) {
     primeCache.push(i);
+  }
+  counter++;
+  if (counter > 1000) {
+    console.log(`just passed ${i.div(1000).toString()}K`);
+    counter = 0;
   }
 }
 
