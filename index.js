@@ -2,7 +2,7 @@ const bignum = require('bignum');
 
 var primeCache = [];
 // Can be a numerical literal or a string containing it
-var max = bignum(5000000);
+var max = bignum(500000000);
 
 function isPrime(n, primeCache) {
   var prob = n.probPrime();
@@ -28,6 +28,8 @@ function findPrimesUnder(max, primeCache) {
       let now = Date.now();
       let diff = now - counterTimer;
       console.log(`${diff}ms: Just passed ${i.div(1000000).toString()}M so far we have ${primeCache.length} primes...`);
+      // CSV output:
+      // console.log(`${i.div(1000000).toString()},${primeCache.length}`);
       counter = 0;
       counterTimer = now;
     }
