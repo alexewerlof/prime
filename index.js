@@ -15,19 +15,25 @@ function isPrime(n, primeCache) {
 }
 
 function findPrimesUnder(max, primeCache) {
+  // jump every 2 numbers because every other number is even hence not prime
+  const STEP = 2;
   var counter = 0;
-  for (let i = bignum(3); i.lt(max); i = i.add(2)) {
+  var counterTimer = Date.now();
+  for (let i = bignum(3); i.lt(max); i = i.add(STEP)) {
     if (isPrime(i, primeCache)) {
       primeCache.push(i);
     }
-    counter++;
-    if (counter > 1000000) {
-      console.log(`just passed ${i.div(1000000).toString()}M so far we have ${primeCache.length} primes...`);
+    counter += STEP;
+    if (counter >= 1000000) {
+      let now = Date.now();
+      let diff = now - counterTimer;
+      console.log(`${diff}ms: Just passed ${i.div(1000000).toString()}M so far we have ${primeCache.length} primes...`);
       counter = 0;
+      counterTimer = now;
     }
   }
 }
 
 findPrimesUnder(max, primeCache);
 
-console.log(primeCache.join('\t'));
+// console.log(primeCache.join('\t'));
