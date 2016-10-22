@@ -27,7 +27,7 @@ function findPrimesUnder(max, primeCache) {
     if (counter >= 1000000) {
       let now = Date.now();
       let diff = now - counterTimer;
-      console.log(`${diff}ms: Just passed ${i.div(1000000).toString()}M so far we have ${primeCache.length} primes...`);
+      console.log(`${humanize.relativeTime(diff)}ms: Just passed ${i.div(1000000).toString()}M so far we have ${primeCache.length} primes...`);
       // CSV output:
       // console.log(`${i.div(1000000).toString()},${primeCache.length}`);
       counter = 0;
